@@ -12,7 +12,7 @@ let plugins = [
   'fullscreen', 'hr', 'image', 'imagetools', 'importcss', 'insertdatetime', 'legacyoutput', 'link',
   'lists', 'media', 'nonbreaking', 'noneditable', 'pagebreak', 'paste', 'preview', 'print', 'save',
   'searchreplace', 'spellchecker', 'tabfocus', 'table', 'template', 'textcolor', 'textpattern', 'toc',
-  'visualblocks', 'visualchars', 'wordcount',
+  'visualblocks', 'visualchars', 'wordcount', 'template_mr'
 ];
 
 let themes = [
@@ -179,7 +179,12 @@ module.exports = function (grunt) {
         port: 3000,
         host: '0.0.0.0',
         disableHostCheck: true,
-        before: app => gruntWebPack.generateDemoIndex(grunt, app, plugins, themes)
+        before: app => gruntWebPack.generateDemoIndex(grunt, app, plugins, themes),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        }
       },
       start: { }
     },

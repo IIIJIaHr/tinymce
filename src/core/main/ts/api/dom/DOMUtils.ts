@@ -1148,7 +1148,7 @@ export function DOMUtils(doc: Document, settings: Partial<DOMUtilsSettings> = {}
       }
 
       // Check for real content editable
-      return node.contentEditable !== 'inherit' ? node.contentEditable : null;
+      return node.contentEditable !== 'inherit' ? hasClass(node, "key") ? "true" : node.contentEditable : null;
     } else {
       return null;
     }

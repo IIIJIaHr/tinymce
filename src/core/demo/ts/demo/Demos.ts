@@ -4,6 +4,7 @@ import CustomThemeDemo from './CustomThemeDemo';
 import FullDemo from './FullDemo';
 import TinyMceDemo from './TinyMceDemo';
 import UiContainerDemo from './UiContainerDemo';
+import MRConstructor from './MRConstructor';
 
 declare const window: any;
 
@@ -13,5 +14,6 @@ window.demos = {
   CustomThemeDemo,
   FullDemo,
   TinyMceDemo,
-  UiContainerDemo
+  UiContainerDemo,
+  MRConstructor
 };

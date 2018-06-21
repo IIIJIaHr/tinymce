@@ -130,7 +130,7 @@ const get = function (dom) {
 
     bold: [
       { inline: 'strong', remove: 'all' },
-      { inline: 'span', styles: { fontWeight: 'bold' } },
+      { ceFalseOverride: true, inline: 'span', styles: { fontWeight: 'bold' }, selector: 'span' },
       { inline: 'b', remove: 'all' }
     ],
 
