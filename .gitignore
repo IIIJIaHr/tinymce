@@ -21,7 +21,6 @@ yarn.lock
 coverage
 node_modules
 js/**/*
-imagemanager
 filemanager
 mcmanager
 powerpaste
@@ -30,6 +29,7 @@ a11ychecker
 codemirror
 mentions
 *.min.js
+!OldPlugins/imagemanager/plugin.min.js
 *.dev.js
 *.full.js
 *.min.css
