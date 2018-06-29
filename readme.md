@@ -100,9 +100,12 @@ Docs are hosted on Github in the [tinymce-docs](https://github.com/tinymce/tinym
 
 Additional instructions for MRSoft
 ------------------------------------
-Typescript files builds from src/ to lib/ - "shell:tsc" task
-Rollup builds files from lib/ to js/tinymce - folder contains ready for use files.
 
-In src/ it uses ES6 module resolution. For global modules like "tinymce.core.api.Env" written special task "globals". It builds files into globals/. Webpack dev server and rollup depend on it.
+__Build explanation__
 
-Webpack-dev-server automatically compiles scripts from src/ and hosts them on localhost:3000
+* Typescript files builds from src/ to lib/ - "shell:tsc" task.
+* Rollup builds files from lib/ to js/tinymce - folder contains ready for use files.
+* In src/ it uses ES6 module resolution. For global modules like "tinymce.core.api.Env" written special task "globals". It builds files into globals/. Webpack dev server and rollup depend on it.
+* Webpack-dev-server automatically compiles scripts from src/ and hosts them on localhost:3000
+
+Если не компилируются исходники в src/, возможно при npm install были загружены новые версии пакетов. Такое может произойти если зависимости выпустили новую версию. Что бы починить это, нужно сравнить package-lock.json локальный и тот что лежит на сервере. Методом подбора найти версию пакета на из-за которого все валится, затем взять версию на которой все работало(версия из репозитория).
