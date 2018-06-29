@@ -97,3 +97,12 @@ __How to Contribute to the Docs__
 Docs are hosted on Github in the [tinymce-docs](https://github.com/tinymce/tinymce-docs) repo.
 
 [How to contribute](https://www.tinymce.com/docs/advanced/contributing-docs/) to the docs, including a style guide, can be found on the TinyMCE website.
+
+Additional instructions for MRSoft
+------------------------------------
+Typescript files builds from src/ to lib/ - "shell:tsc" task
+Rollup builds files from lib/ to js/tinymce - folder contains ready for use files.
+
+In src/ it uses ES6 module resolution. For global modules like "tinymce.core.api.Env" written special task "globals". It builds files into globals/. Webpack dev server and rollup depend on it.
+
+Webpack-dev-server automatically compiles scripts from src/ and hosts them on localhost:3000
