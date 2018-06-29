@@ -141,7 +141,6 @@ export default function () {
         success();
       }
     },
-    content_css: '../css/mr_template.css',
     save_onsavecallback: savecallback,
     templates: "../tmpl/tmpl.json",
     template_cdate_format: '[CDATE: %m/%d/%Y : %H:%M:%S]',
