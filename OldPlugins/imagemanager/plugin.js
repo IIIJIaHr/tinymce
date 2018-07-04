@@ -30,7 +30,7 @@
                 for (j = 0; j < d.length; j++) {
                     k = d[j];
                     f.push(k);
-                    if (k.src && /imagemanager\/plugin\.min\.js/g.test(k.src)) {
+                    if (k.src && /imagemanager\/plugin\.js/g.test(k.src)) {
                         return k.src.substring(0, k.src.lastIndexOf("/"));
                     }
                 }
@@ -586,7 +586,7 @@
                 editor.addButton("insertfile", {
                     icon: "browse",
                     title: "Insert file",
-                    //text: 'Выбрать файл шаблона',
+                    //text: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
                     cmd: "mceInsertFile"
                 });
             } else {
