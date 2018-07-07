@@ -12,13 +12,14 @@ import Tools from 'tinymce/core/api/util/Tools';
 import XHR from 'tinymce/core/api/util/XHR';
 import Settings from '../api/Settings';
 import DateTimeHelper from './DateTimeHelper';
+import { EditorKindDoc } from 'tinymce/core/KindDoc';
 
-const createTemplateList = function (editorSettings, callback) {
+const createTemplateList = function (editorSettings, editor: EditorKindDoc , callback) {
   return function () {
     const templateList = Settings.getTemplates(editorSettings);
 
     if (typeof templateList === 'function') {
-      templateList(callback);
+      templateList(editor, callback);
       return;
     }
 

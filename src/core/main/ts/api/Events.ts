@@ -10,6 +10,7 @@
 
 import { Editor } from 'tinymce/core/api/Editor';
 import { EditorMode } from 'tinymce/core/Mode';
+import { EditorKindDoc } from 'tinymce/core/KindDoc';
 import { HTMLElement } from '@ephox/dom-globals';
 
 const firePreProcess = (editor: Editor, args) => editor.fire('PreProcess', args);
@@ -19,6 +20,8 @@ const firePostProcess = (editor: Editor, args) => editor.fire('PostProcess', arg
 const fireRemove = (editor: Editor) => editor.fire('remove');
 
 const fireSwitchMode = (editor: Editor, mode: EditorMode) => editor.fire('SwitchMode', { mode });
+
+const fireSwitchKindDoc = (editor: Editor, kindDoc: EditorKindDoc) => editor.fire('SwitchKindDoc', { kindDoc });
 
 const fireObjectResizeStart = (editor: Editor, target: HTMLElement, width: number, height: number) => {
   editor.fire('ObjectResizeStart', { target, width, height });
@@ -33,6 +36,7 @@ export default {
   firePostProcess,
   fireRemove,
   fireSwitchMode,
+  fireSwitchKindDoc,
   fireObjectResizeStart,
   fireObjectResized
 };

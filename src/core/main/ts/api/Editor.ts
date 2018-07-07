@@ -14,6 +14,7 @@ import EditorObservable from './EditorObservable';
 import { ParamTypeMap, getEditorSettings, getParam } from '../EditorSettings';
 import Env from './Env';
 import * as Mode from '../Mode';
+import * as KindDoc from '../KindDoc';
 import Shortcuts from './Shortcuts';
 import DOMUtils from './dom/DOMUtils';
 import DomQuery from './dom/DomQuery';
@@ -31,6 +32,7 @@ import Schema from 'tinymce/core/api/html/Schema';
 import { UndoManager } from 'tinymce/core/api/UndoManager';
 import { HTMLElement, Document, Window } from '@ephox/dom-globals';
 
+import EditorKindDoc = KindDoc.EditorKindDoc;
 /**
  * Include the base event class documentation.
  *
@@ -95,6 +97,7 @@ export interface Editor {
   initialized: boolean;
   inline: boolean;
   isNotDirty: boolean;
+  kindDoc: EditorKindDoc;
   loadedCSS: any;
   menuItems: any;
   notificationManager: any;
@@ -148,6 +151,7 @@ export interface Editor {
   getContentAreaContainer(): HTMLElement;
   getDoc(): Document;
   getElement(): HTMLElement;
+  getKindDoc(): EditorKindDoc;
   getLang(name: string, defaultVal): any;
   getParam<K extends keyof ParamTypeMap>(name: string, defaultVal: ParamTypeMap[K], type: K): ParamTypeMap[K];
   getParam<T>(name: string, defaultVal: T, type: string): T;
@@ -172,6 +176,7 @@ export interface Editor {
   setContent(content: EditorContent.Content, args?: EditorContent.SetContentArgs): void;
   setDirty(state: boolean): void;
   setMode(mode: string): void;
+  setKindDoc(kindDoc: EditorKindDoc): void;
   setProgressState(state: boolean, time?: number): void;
   show(): void;
   toggleNativeEvent(name: string, state): void;
@@ -297,6 +302,7 @@ export const Editor = function (id, settings, editorManager) {
    */
   self.contentStyles = [];
 
+  self.kindDoc = EditorKindDoc.UNKNOWN;
   self.shortcuts = new Shortcuts(self);
   self.loadedCSS = {};
   self.editorCommands = new EditorCommands(self);
@@ -417,6 +423,10 @@ Editor.prototype = {
     }
 
     return this.editorManager.translate(text);
+  },
+
+  getKindDoc () {
+    return KindDoc.getKindDoc(this);
   },
 
   /**
@@ -1031,6 +1041,16 @@ Editor.prototype = {
    */
   setMode (mode) {
     Mode.setMode(this, mode);
+  },
+
+  /**
+   * Sets the editor kindDoc.
+   *
+   * @method setKindDoc
+   * @param {String} kindDoc KindDoc to set the editor in.
+   */
+  setKindDoc (kindDoc) {
+    KindDoc.setKindDoc(this, kindDoc);
   },
 
   /**

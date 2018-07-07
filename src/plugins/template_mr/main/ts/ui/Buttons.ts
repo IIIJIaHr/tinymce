@@ -20,12 +20,12 @@ const showDialog = function (editor) {
 const register = function (editor) {
   editor.addButton('template', {
     title: 'Insert template',
-    onclick: Templates.createTemplateList(editor.settings, showDialog(editor))
+    onclick: Templates.createTemplateList(editor.settings, editor, showDialog(editor))
   });
 
   editor.addMenuItem('template', {
     text: 'Template',
-    onclick: Templates.createTemplateList(editor.settings, showDialog(editor)),
+    onclick: Templates.createTemplateList(editor.settings, editor, showDialog(editor)),
     icon: 'template',
     context: 'insert'
   });

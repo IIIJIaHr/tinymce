@@ -81,6 +81,8 @@ const registerMenuItems = function (editor) {
     superscript: ['Superscript', 'Superscript'],
     removeformat: ['Clear formatting', 'RemoveFormat'],
     newdocument: ['New document', 'mceNewDocument'],
+    newdoc: ['New Doc', 'mceNewDoc'],
+    newprj: ['New Prj', 'mceNewPrj'],
     cut: ['Cut', 'Cut', 'Meta+X'],
     copy: ['Copy', 'Copy', 'Meta+C'],
     paste: ['Paste', 'Paste', 'Meta+V'],

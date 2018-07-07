@@ -21,6 +21,7 @@ import * as IndentOutdent from 'tinymce/core/commands/IndentOutdent';
 import { Editor } from 'tinymce/core/api/Editor';
 import { DOMUtils } from 'tinymce/core/api/dom/DOMUtils';
 import { HTMLElement } from '@ephox/dom-globals';
+import { EditorKindDoc } from '../KindDoc';
 
 /**
  * This class enables you to add custom editor commands and it contains
@@ -522,7 +523,18 @@ export default function (editor: Editor) {
     },
 
     'mceNewDocument' () {
-      editor.setContent('');
+      editor.setKindDoc(EditorKindDoc.UNKNOWN);
+      clearContent();
+    },
+
+    'mceNewDoc' () {
+      editor.setKindDoc(EditorKindDoc.DOC_RC);
+      clearContent();
+    },
+
+    'mceNewPrj' () {
+      editor.setKindDoc(EditorKindDoc.PRC_RC);
+      clearContent();
     },
 
     'InsertLineBreak' (command, ui, value) {
@@ -530,6 +542,10 @@ export default function (editor: Editor) {
       return true;
     }
   });
+
+  const clearContent = () => {
+    editor.setContent('');
+  }
 
   const alignStates = (name: string) => () => {
     const nodes = selection.isCollapsed() ? [dom.getParent(selection.getNode(), dom.isBlock)] : selection.getSelectedBlocks();

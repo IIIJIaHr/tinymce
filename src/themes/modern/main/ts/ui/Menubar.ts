@@ -13,7 +13,7 @@ import Tools from 'tinymce/core/api/util/Tools';
 import * as Settings from '../api/Settings';
 
 const defaultMenus = {
-  file: { title: 'File', items: 'newdocument restoredraft | preview | print' },
+  file: { title: 'File', items: 'newdoc newprj restoredraft | preview | print' },
   edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall' },
   view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
   insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap hr | pagebreak nonbreaking anchor toc | insertdatetime' },

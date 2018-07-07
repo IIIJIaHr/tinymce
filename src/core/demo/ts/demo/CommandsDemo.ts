@@ -53,6 +53,8 @@ export default function () {
     cmd('selectAll'),
     cmd('delete'),
     cmd('mceNewDocument'),
+    cmd('mceNewDoc'),
+    cmd('mceNewPrj'),
     cmd('Undo'),
     cmd('Redo'),
     cmd('mceAutoResize'),
