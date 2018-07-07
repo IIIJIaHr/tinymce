@@ -11,6 +11,7 @@
 import { Merger } from '@ephox/katamari';
 import XHR from 'tinymce/core/api/util/XHR';
 import * as KindDoc from "tinymce/core/KindDoc";
+import { getTemplates } from './TemplateManager';
 
 declare let tinymce: any;
 declare let mcImageManager: any;
@@ -139,7 +140,7 @@ export default function () {
       }
     },
     save_onsavecallback: savecallback,
-    templates: "../tmpl/tmpl.json",
+    templates: getTemplates,
     template_cdate_format: '[CDATE: %m/%d/%Y : %H:%M:%S]',
     template_mdate_format: '[MDATE: %m/%d/%Y : %H:%M:%S]',
     image_caption: true,
