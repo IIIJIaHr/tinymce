@@ -302,7 +302,7 @@ export const Editor = function (id, settings, editorManager) {
    */
   self.contentStyles = [];
 
-  self.kindDoc = EditorKindDoc.UNKNOWN;
+  self.kindDoc = EditorKindDoc.DOC_RC;
   self.shortcuts = new Shortcuts(self);
   self.loadedCSS = {};
   self.editorCommands = new EditorCommands(self);
