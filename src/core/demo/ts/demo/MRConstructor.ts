@@ -10,6 +10,7 @@
 
 import { Merger } from '@ephox/katamari';
 import XHR from 'tinymce/core/api/util/XHR';
+import * as KindDoc from "tinymce/core/KindDoc";
 
 declare let tinymce: any;
 declare let mcImageManager: any;
@@ -17,14 +18,10 @@ declare let mcImageManager: any;
 let savecallback = function (editor) {
   let data = editor.contentDocument.body.innerHTML;
 
-  let fileName = (typeof mcImageManager.currentFile.name === 'undefined') ? "" : mcImageManager.currentFile.name.replace(/\.[^/.]+$/, "");
-
-  console.log(fileName);
-
   editor.windowManager.open({
     title: 'Укажите имя файла',
     body: [
-      { type: 'textbox', name: 'title', label: 'Имя файла', value: fileName }
+      { type: 'textbox', name: 'title', label: 'Имя файла', value: '' }
     ],
     onsubmit: function (e) {
       // Insert content when the window form is submitted
@@ -33,10 +30,10 @@ let savecallback = function (editor) {
         // {0}/[dir]/{1}
         // {0}/{1}
         //String.prototype.lastIndexOf()
-        let path = (typeof mcImageManager.currentFile.path === 'undefined') ? '{0}/DOC_RC/{1}' :
-          mcImageManager.currentFile.path.substring(0, mcImageManager.currentFile.path.lastIndexOf("/")) + "/{1}";
-        console.log('path', path);
-        let json = JSON.stringify({ data: { Data: sanitizeHtml(data), Path: path, FileName: e.data.title } });
+
+        let kindDoc = KindDoc.getKindDoc(editor);
+
+        let json = JSON.stringify({ data: { Data: sanitizeHtml(data), FileNameWithoutExtension: e.data.title, Type: kindDoc, Extension: '.htm' } });
 
         let errorMsg = 'Ошибка сохранения';
         console.log('thiFile', mcImageManager.currentFile);
