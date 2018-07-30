@@ -1,56 +1,39 @@
-import { EditorKindDoc } from "tinymce/core/KindDoc"
-
-const testPrj = [
-    {
-        "title": "Номер РК",
-        "url": "../tmpl/DOC_RC/freeNum.htm",
-        "description": "Значение номера документа"
-    },
-    {
-        "title": "Адресаты с датой отправки",
-        "url": "../tmpl/DOC_RC/addresses.htm",
-        "description": "Перечень адресатов с датой отправки"
-    },
-    {
-        "title": "Дата РК",
-        "url": "../tmpl/DOC_RC/docDate.htm",
-        "description": "Дата РК"
-    }
-];
-
-const testDoc = [
-    {
-        "title": "For Doc",
-        "url": "../tmpl/DOC_RC/freeNum.htm",
-        "description": "Значение номера документа"
-    },
-    {
-        "title": "Адресаты с датой отправки",
-        "url": "../tmpl/DOC_RC/addresses.htm",
-        "description": "Перечень адресатов с датой отправки"
-    },
-    {
-        "title": "Дата РК",
-        "url": "../tmpl/DOC_RC/docDate.htm",
-        "description": "Дата РК"
-    }
-];
+import * as TemplateService from "./TemplateService";
+import $ from 'tinymce/core/api/dom/DomQuery';
+import { EditorKindDoc } from "tinymce/core/KindDoc";
 
 const getTemplates = function (editor, showDialogCallback) {
     let kindDoc = editor.getKindDoc();
 
+    TemplateService.getTemplateChunks(kindDoc).then(function (chunks) {
+        showDialogCallback(chunks);
+    });
+}
+
+const setup = function (editor) {
+    editor.on('SwitchKindDoc', function (e) {
+        showKindDoc(e.kindDoc);
+    });
+}
+
+const showKindDoc = function (kindDoc: EditorKindDoc) {
+    let text = '';
+
     switch (kindDoc) {
         case EditorKindDoc.DOC_RC:
-            showDialogCallback(testDoc)
+            text = 'РК';
             break;
         case EditorKindDoc.PRC_RC:
-            showDialogCallback(testPrj)
+            text = 'РКПД';
             break;
         default:
-            throw `Unknown EditorKindDoc: ${kindDoc}`;
+            throw `Unexpected enum value: ${kindDoc} for EditorKindDoc type`;
     }
+
+    $('.kindDoc').text(text);
 }
 
 export {
-    getTemplates
+    getTemplates,
+    setup
 }
