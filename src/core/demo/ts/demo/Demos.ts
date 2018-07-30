@@ -5,6 +5,7 @@ import FullDemo from './FullDemo';
 import TinyMceDemo from './TinyMceDemo';
 import UiContainerDemo from './UiContainerDemo';
 import MRConstructor from './MRConstructor';
+import AnnotationsDemo from './AnnotationsDemo';
 
 declare const window: any;
 
@@ -15,5 +16,6 @@ window.demos = {
   FullDemo,
   TinyMceDemo,
   UiContainerDemo,
-  MRConstructor
+  MRConstructor,
+  AnnotationsDemo
 };
